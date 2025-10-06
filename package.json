@@ -1,0 +1,39 @@
+{
+  "name": "taskflow-pro",
+  "version": "1.0.0",
+  "description": "Enterprise Task Management System",
+  "private": true,
+  "workspaces": [
+    "apps/backend"
+  ],
+  "scripts": {
+    "services:start": "./dev-services.sh start",
+    "services:stop": "./dev-services.sh stop",
+    "services:status": "./dev-services.sh status",
+    "services:restart": "./dev-services.sh restart",
+    "backend": "npm run start:dev --workspace=apps/backend",
+    "backend:build": "npm run build --workspace=apps/backend",
+    "backend:test": "npm run test --workspace=apps/backend",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "lint": "eslint \"apps/**/*.{ts,tsx,js,jsx}\"",
+    "lint:fix": "eslint \"apps/**/*.{ts,tsx,js,jsx}\" --fix"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "author": "",
+  "license": "MIT"
+}
