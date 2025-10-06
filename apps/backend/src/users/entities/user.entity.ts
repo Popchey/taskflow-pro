@@ -44,4 +44,5 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+  tasks: any;
 }
