@@ -1,27 +1,27 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+// src/tasks/entities/task.entity.ts
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
+  ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  JoinColumn,
 } from 'typeorm';
 
 import { User } from '../../users/entities/user.entity';
 
 export enum TaskStatus {
-  TODO = 'TODO',
-  IN_PROGRESS = 'IN_PROGRESS',
-  IN_REVIEW = 'IN_REVIEW',
-  DONE = 'DONE',
+  TODO = 'todo',
+  IN_PROGRESS = 'in_progress',
+  DONE = 'done',
 }
 
 export enum TaskPriority {
-  LOW = 'LOW',
-  MEDIUM = 'MEDIUM',
-  HIGH = 'HIGH',
-  URGENT = 'URGENT',
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HIGH = 'high',
+  CRITICAL = 'critical',
 }
 
 @Entity('tasks')
@@ -49,22 +49,11 @@ export class Task {
   })
   priority: TaskPriority;
 
-  @Column({ type: 'timestamp', nullable: true })
-  dueDate: Date;
-
-  @Column({ nullable: true })
-  assigneeId: string;
-
-  @ManyToOne(() => User, { eager: true })
-  @JoinColumn({ name: 'assigneeId' })
+  @ManyToOne(() => User, (user) => user.tasks)
   assignee: User;
 
-  @Column()
-  createdById: string;
-
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'createdById' })
-  createdBy: User;
+  @Column({ nullable: true })
+  dueDate: Date;
 
   @CreateDateColumn()
   createdAt: Date;

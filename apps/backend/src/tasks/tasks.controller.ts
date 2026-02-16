@@ -10,8 +10,9 @@ import {
   UseGuards,
   Request,
 } from '@nestjs/common';
+
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { TasksService } from './tasks.service';
+import { TasksService } from './services/tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
